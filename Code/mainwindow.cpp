@@ -87,7 +87,7 @@ void MainWindow::generatePerlinNoise1D(int nCount, float *baseSeed, int nOctaves
     /*
      * nCount - size of the array (the number of points we wanna create)
      * baseSeed - base seed array of random values between 0 and 1
-     * nOctaves - the number of iterations of the algorithm that we want to apply, max the size of the base array
+     * nOctaves - the number of iterations of the algorithm that we want to apply, maximum is log2(base seed array size)
      * noiseOutput - a pointer to the output array
      */
     for(int i = 0; i < nCount; i++) {
@@ -99,7 +99,7 @@ void MainWindow::generatePerlinNoise1D(int nCount, float *baseSeed, int nOctaves
         for(int j = 0; j < nOctaves; j++) {
             int pitch = nCount >> j; // shifting bits to the right -> dividing by half/two each octave
             /*
-             * the pitch is basically responsible for deciding how often do we want to choose a point that is gonna enable us to calculate the value,
+             * the pitch is basically responsible for deciding how often do we want to choose a point, that is gonna enable us to calculate the value,
              * this way we can get more and more satisfing results
              */
             int firstPoint = (i / pitch) * pitch; // the first point is always going to be <= i
